@@ -48,6 +48,7 @@ class Vagas(models.Model):
     nivel_experiencia = models.CharField(
         max_length=2, choices=choices_experiencia)
     data_final = models.DateField()
+    email = models.EmailField(null=True)
     status = models.CharField(max_length=30, choices=choices_status)
     tecnologias_dominadas = models.ManyToManyField(Tecnologias)
     tecnologias_estudar = models.ManyToManyField(
@@ -55,3 +56,7 @@ class Vagas(models.Model):
 
     def __str__(self):
         return self.titulo
+
+
+def qtd_vagas(self):
+    return Vagas.objects.filter(empresa__id=self.id).count()
